@@ -1,4 +1,8 @@
+require 'singleton'
 class Piece
+
+  attr_accessor :position
+  attr_reader :color
 
   def initialize(position, color)
     @position = position
@@ -8,6 +12,9 @@ end
 
 
 class NullPiece < Piece
+  include Singleton
+  def initialize
+  end
 end
 
 class Pawn < Piece

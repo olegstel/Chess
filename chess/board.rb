@@ -2,6 +2,7 @@ require 'byebug'
 require_relative 'piece'
 class Board
 
+attr_accessor :grid
 
 DEFAULT_BOARD = {[0,0] => Rook.new([0,0], :black),
                   [0,1] => Knight.new([0,1], :black),
@@ -40,7 +41,10 @@ DEFAULT_BOARD = {[0,0] => Rook.new([0,0], :black),
                 [6, 5] => Pawn.new([6,5], :white),
                 [6, 6] => Pawn.new([6,6], :white),
                 [6, 7] => Pawn.new([6,7], :white)
+
               }
+
+
 
 
 
@@ -55,20 +59,42 @@ def create_grid
 end
 
 def populate_board
+  empty = NullPiece.instance
   DEFAULT_BOARD.each do |k,v|
-    # byebug
-    @grid[k[0]][k[1]] = v
+    self[k] = v
+  end
+  (2..5).to_a.each do |row|
+    (0..7).to_a.each do |col|
+      pos = [row, col]
+      self[pos] = NullPiece.instance
+    end
   end
 end
 
 def [](pos)
-  x, y = pos[0], pos[1]
-  @grid[x][y]
+  row, col = pos
+  @grid[row][col]
 end
 
 def []=(pos, piece)
-  x, y = pos[0], pos[1]
+  x, y = pos
   @grid[x][y] = piece
 end
 
+def move_piece(start_pos, end_pos)
+  byebug
+  piece = board[start_pos]
+    if is_valid_move?(piece, end_pos)
+      piece.position = end_pos
+      self[end_pos] = piece
+      self[start_pos] = NullPiece
+    end
+  end
+
+def is_valid_move?(piece, position)
+  self[position] == NullPiece ||
+    self[position].color != piece.color
 end
+
+end
+ # p n  =  Board.new
