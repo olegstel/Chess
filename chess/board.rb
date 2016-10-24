@@ -84,17 +84,19 @@ end
 def move_piece(start_pos, end_pos)
   byebug
   piece = self[start_pos]
-    if is_valid_move?(piece, end_pos)
+    if piece.valid_move?(end_pos)
       piece.position = end_pos
       self[end_pos] = piece
       self[start_pos] = NullPiece
     end
   end
 
-def is_valid_move?(piece, position)
-  self[position] == NullPiece ||
-    self[position].color != piece.color
-end
+
+  def in_bound?(pos)
+    row, col = pos
+    (0..7).include?(row) && (0..7).include?(col)
+  end
+
 
 end
  # p n  =  Board.new

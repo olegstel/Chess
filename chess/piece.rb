@@ -19,6 +19,10 @@ class NullPiece < Piece
   include Singleton
   def initialize
   end
+
+  def to_s
+    "_"
+  end
 end
 
 class Pawn < Piece
@@ -71,30 +75,30 @@ class Pawn < Piece
       :down
     end
   end
-
-  def forward_steps(pos)
-     row, col = self.pos
-    if self.at_start_row?
-      if forward_dir ==  :up
-        [[row + 1, col], [row + 2, col]]
-      else
-        [[row -1, col], [row - 2, col]]
-      end
-    else
-      if forward_dir ==  :up
-        [[row + 1, col]]
-      else
-        [[row -1, col]]
-      end
-  end
-
-  def side_attacks(pos)
-    if forward_dir ==  :up
-      [[row + 1, col + 1], [row + 1, col - 1]]
-    else
-      [[row -1, col + 1], [row - 1, col -1 ]]
-    end
-  end
+  #
+  # def forward_steps(pos)
+  #    row, col = self.pos
+  #   if self.at_start_row?
+  #     if forward_dir ==  :up
+  #       [[row + 1, col], [row + 2, col]]
+  #     else
+  #       [[row -1, col], [row - 2, col]]
+  #     end
+  #   else
+  #     if forward_dir ==  :up
+  #       [[row + 1, col]]
+  #     else
+  #       [[row -1, col]]
+  #     end
+  # end
+  #
+  # def side_attacks(pos)
+  #   if forward_dir ==  :up
+  #     [[row + 1, col + 1], [row + 1, col - 1]]
+  #   else
+  #     [[row -1, col + 1], [row - 1, col -1 ]]
+  #   end
+  # end
 
   def at_start_row?
     if self.color == :while
