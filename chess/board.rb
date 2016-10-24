@@ -83,7 +83,7 @@ end
 
 def move_piece(start_pos, end_pos)
   byebug
-  piece = board[start_pos]
+  piece = self[start_pos]
     if is_valid_move?(piece, end_pos)
       piece.position = end_pos
       self[end_pos] = piece
