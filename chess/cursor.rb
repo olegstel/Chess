@@ -1,4 +1,5 @@
 require "io/console"
+require_relative "display"
 
 KEYMAP = {
   " " => :space,
@@ -91,8 +92,8 @@ class Cursor
     old_row, old_col = @cursor_pos
     delta_row, delta_col = diff
     new_pos = [old_row + delta_row, old_col + delta_col]
-    if board.in_board?(new_pos)
-      @cursor_pos = new_pos
+    # if board.in_bound?(new_pos)
+      Display.update_cursor_position(new_pos)
+      # Display.render()
     end
   end
-end

@@ -44,11 +44,6 @@ DEFAULT_BOARD = {[0,0] => Rook.new([0,0], :black),
 
               }
 
-
-
-
-
-
 def initialize()
   @grid = create_grid
   populate_board
@@ -63,6 +58,10 @@ def populate_board
   DEFAULT_BOARD.each do |k,v|
     self[k] = v
   end
+  place_null_pieces
+end
+
+def place_null_pieces
   (2..5).to_a.each do |row|
     (0..7).to_a.each do |col|
       pos = [row, col]

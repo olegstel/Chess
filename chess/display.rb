@@ -21,10 +21,15 @@ class Display
       end
     puts display_row
     end
-
   end
 
+  def update_cursor_position(pos)
+    @cursor.cursor_pos = pos
+  end
 
+  def move
+    @cursor.get_input
+  end
 end
 
 ddd = Board.new
