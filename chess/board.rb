@@ -117,10 +117,3 @@ end
 
 
 end
-b = Board.new
-d = Display.new(b)
-byebug
-# ddd = Board.new
-# disp = Display.new(ddd)
-# disp.render
-# disp.move

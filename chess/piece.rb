@@ -1,6 +1,6 @@
 require 'singleton'
 require_relative 'sliding_piece.rb'
-# require './stepping_piece.rb'
+require_relative 'stepping_piece.rb'
 
 class Piece
 
@@ -119,6 +119,7 @@ class Pawn < Piece
 end
 
 class Knight < Piece
+  include SteppingPiece
   def to_s
     "H"
   end
@@ -139,6 +140,7 @@ class Queen < Piece
 end
 
 class King < Piece
+  include SteppingPiece
   def to_s
     "K"
   end
