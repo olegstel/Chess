@@ -1,5 +1,6 @@
 require 'byebug'
 require_relative 'piece'
+require_relative 'display'
 class Board
 
 attr_accessor :grid
@@ -116,4 +117,7 @@ end
 
 
 end
- # p n  =  Board.new
+# ddd = Board.new
+# disp = Display.new(ddd)
+# disp.render
+# disp.move

@@ -1,19 +1,20 @@
-require_relative 'board'
+require 'byebug'
 require 'colorize'
 require_relative 'cursor'
 
 class Display
     attr_reader :cursor
   def initialize(board)
-    @cursor = Cursor.new([0,0], board)
+    # byebug
+    @cursor = Cursor.new([0,0])
     @board = board
   end
 
-  def render
+  def render(cursor = @cursor)
     (0..7).each do |row|
       display_row = ""
       (0..7).each do |col|
-        if @cursor.cursor_pos == [row, col]
+        if cursor.cursor_pos == [row, col]
           display_row += @board[[row, col]].to_s.colorize( :background => :red)
         else
           display_row += @board[[row, col]].to_s
@@ -23,16 +24,18 @@ class Display
     end
   end
 
-  def update_cursor_position(pos)
-    @cursor.cursor_pos = pos
-  end
+  # def update_cursor_position(pos)
+  #   @cursor.cursor_pos = pos
+  # end
 
   def move
-    @cursor.get_input
+    self.render(cursor)
+    # byebug
+    input = @cursor.get_input
+    while input == nil
+      self.render(cursor)
+      input = @cursor.get_input
+    end
   end
 end
-
-ddd = Board.new
-disp = Display.new(ddd)
-
- disp.render
+#
