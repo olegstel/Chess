@@ -1,4 +1,7 @@
 require 'singleton'
+require_relative 'sliding_piece.rb'
+# require './stepping_piece.rb'
+
 class Piece
 
   attr_accessor :position
