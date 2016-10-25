@@ -10,7 +10,7 @@ class Piece
   end
 
   def valid_move?(position, board)
-    board[position] == NullPiece && board[position].color != self.color
+    board[position] == NullPiece || board[position].color != self.color
     # unless
     #   raise ArgumentError "That spot has one of your own pieces"
     # end

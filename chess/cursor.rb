@@ -1,5 +1,4 @@
 require "io/console"
-require_relative "display"
 
 KEYMAP = {
   " " => :space,
