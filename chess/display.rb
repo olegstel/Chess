@@ -11,6 +11,7 @@ class Display
   end
 
   def render(cursor = @cursor)
+    puts "This is a work in progress -- Pawns have godlike abilities"
     system("clear")
     (0..7).each do |row|
       display_row = ""
