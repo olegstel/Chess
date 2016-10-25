@@ -15,10 +15,13 @@ class Display
     (0..7).each do |row|
       display_row = ""
       (0..7).each do |col|
+        piece = @board[[row, col]]
         if cursor.cursor_pos == [row, col]
-          display_row += @board[[row, col]].to_s.colorize( :background => :red)
+          display_row += piece.to_s.colorize( :background => :red)
+        elsif piece == NullPiece.instance
+          display_row += "_"
         else
-          display_row += @board[[row, col]].to_s
+          display_row += piece.to_s.colorize(piece.color)
         end
       end
     puts display_row
