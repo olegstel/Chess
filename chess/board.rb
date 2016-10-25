@@ -110,6 +110,12 @@ end
   end
 
   def is_path_clear?(final_pos, piece)
+
+    #ugly cludge for checking
+
+    if piece.class == Pawn
+      return true
+    end
     path = piece.build_straigt_path(piece.position, final_pos)
     unless path[0] == piece.position
       path.reverse!

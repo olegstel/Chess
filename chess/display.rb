@@ -37,6 +37,7 @@ class Display
       self.render(cursor)
       input = @cursor.get_input
     end
+   input
   end
 end
 #
