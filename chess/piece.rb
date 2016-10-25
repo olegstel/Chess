@@ -8,9 +8,12 @@ class Piece
     @position = position
     @color = color
   end
-  def valid_move?(position)
-    board[position] == NullPiece ||
-      board[position].color != self.color
+
+  def valid_move?(position, board)
+    board[position] == NullPiece && board[position].color != self.color
+    # unless
+    #   raise ArgumentError "That spot has one of your own pieces"
+    # end
   end
 end
 

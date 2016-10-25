@@ -81,14 +81,32 @@ def []=(pos, piece)
 end
 
 def move_piece(start_pos, end_pos)
-  byebug
   piece = self[start_pos]
-    if piece.valid_move?(end_pos)
-      piece.position = end_pos
-      self[end_pos] = piece
-      self[start_pos] = NullPiece
+
+  begin
+    empty_position?(start_pos)
+  rescue ArgumentError => e
+    puts "#{e.messages}"
+  end
+
+  begin
+    piece.valid_move?(end_pos, self)
+  rescue ArgumentError => e
+    puts "#{e.message}"
+  end
+    piece.position = end_pos
+    self[end_pos] = piece
+    self[start_pos] = NullPiece
+end
+
+
+  def empty_position?(pos)
+    unless self[pos] != NullPiece
+      raise ArgumentError.new("Start position is not empty")
     end
   end
+
+
 
 
   def in_bound?(pos)
