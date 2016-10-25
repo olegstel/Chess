@@ -4,9 +4,10 @@ class Piece
   attr_accessor :position
   attr_reader :color
 
-  def initialize(position, color)
+  def initialize(position, color, board)
     @position = position
     @color = color
+    @board = board
   end
 
   def valid_move?(position, board)
@@ -121,12 +122,14 @@ class Knight < Piece
 end
 
 class Bishop < Piece
+  include SlidingPiece
   def to_s
     "B"
   end
 end
 
 class Queen < Piece
+  include SlidingPiece
   def to_s
     "Q"
   end
@@ -139,6 +142,7 @@ class King < Piece
 end
 
 class Rook < Piece
+  include SlidingPiece
   def to_s
     "R"
   end

@@ -11,6 +11,7 @@ class Display
   end
 
   def render(cursor = @cursor)
+    system("clear")
     (0..7).each do |row|
       display_row = ""
       (0..7).each do |col|
