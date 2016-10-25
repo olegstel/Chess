@@ -19,6 +19,10 @@ class Piece
     #   raise ArgumentError "That spot has one of your own pieces"
     # end
   end
+
+  def opposite_color
+    self.color == :white ? :black : :white
+  end
 end
 
 
@@ -39,22 +43,26 @@ class Pawn < Piece
 
   def moves
   end
-
-  protected
-
-  def valid_move?(pos)
-     super(pos)
-    if self.in_starting_position?
-      spaces_ahead_empty(pos, 2)
-      spaces_ahead_empty(pos, 1)
-    elsif
-      if spaces_ahead_empty(pos, 1)
-
-      else
-        check_diagonals
-      end
-    end
+  def valid_move?(position, board)
+    true
   end
+  
+    # unless
+  #protected
+
+  # def valid_move?(pos)
+  #    super(pos)
+  #   if self.in_starting_position?
+  #     spaces_ahead_empty(pos, 2)
+  #     spaces_ahead_empty(pos, 1)
+  #   elsif
+  #     if spaces_ahead_empty(pos, 1)
+  #
+  #     else
+  #       check_diagonals
+  #     end
+  #   end
+  # end
 
   def check_diagonals(pos)
     row, col = pos

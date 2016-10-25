@@ -97,16 +97,35 @@ def move_piece(start_pos, end_pos)
 
     piece.position = end_pos
     self[end_pos] = piece
-    self[start_pos] = NullPiece
+    self[start_pos] = NullPiece.instance
 end
 
 
   def empty_position?(pos)
-    unless self[pos] != NullPiece
-      raise ArgumentError.new("Start position is not empty")
-    end
+    self[pos] == NullPiece.instance
   end
 
+  def occupied_by_color?(pos, color)
+    self[pos].color == color
+  end
+
+  def is_path_clear?(final_pos, piece)
+    path = piece.build_straigt_path(piece.position, final_pos)
+    unless path[0] == piece.position
+      path.reverse!
+    end
+
+    posible_moves = piece.moves
+    path[1..-2].each do |pos|
+      return false unless empty_position?(pos)
+      return false unless posible_moves.include?(pos)
+    end
+
+    return false unless empty_position?(final_pos) ||
+      occupied_by_color?(final_pos, piece.opposite_color)
+
+    return true
+  end
 
 
 
@@ -114,6 +133,7 @@ end
     row, col = pos
     (0..7).include?(row) && (0..7).include?(col)
   end
+
 
 
 end
